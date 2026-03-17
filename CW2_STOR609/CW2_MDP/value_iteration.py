@@ -6,7 +6,6 @@ Created on Tue Mar 17 11:58:56 2026
 @author: bathetay
 """
 
-
 def value_iteration(state_space: list[str], action_space: list[str], 
                     transition_func: dict[tuple[str,str],list[float]], 
                     reward_func: dict[tuple[str,str],float], 
@@ -60,15 +59,23 @@ def value_iteration(state_space: list[str], action_space: list[str],
         """
         Calculate the Q-function for state-action pair (s, a)
         """
-        return reward_func[(s,a)] + gamma*sum(p * value_func[s_prime] for p, s_prime in zip(transition_func[(s, a)], state_space))
+        return reward_func.get((s, a), 0) + gamma*sum(p * value_func[s_prime] for p, s_prime in zip(transition_func[(s, a)], state_space))
     
     #Update value function to next iteration of value function
     k = 0 
     while True:
         for s in state_space:
             #maximise the following expression, calculating the New Value Function Dictionary
-            new_value_func[s] = max(Q_func(s,a) for a in action_space)
-        
+            
+            #Calculate the values of the q function for all valid state action pairs
+            Q_Values = [Q_func(s,a) for a in action_space if (s,a) in transition_func]
+            
+            #Append 0 to ensure we have a non-empty list
+            Q_Values.append(0)
+            
+            #New Value function is the maximum value from this list
+            new_value_func[s] = max(Q_Values)
+            
         #Convergence check using epsilon threshold
         if all(abs(new_value_func[s] - value_func[s]) < epsilon for s in state_space):
             break
@@ -81,6 +88,10 @@ def value_iteration(state_space: list[str], action_space: list[str],
         
         
     #Find policy corresponding to optimised value function
-    policy = {s: max(action_space, key=lambda a: Q_func(s, a)) for s in state_space}
+    policy = {s: max((a for a in action_space if (s, a) in transition_func), 
+                     key = lambda a: Q_func(s, a),
+                     default = None
+                     ) for s in state_space}
+    #Find the policy, only considering the valid actions, if there are no valid actions there is no policy so return None
     
     return policy, value_func

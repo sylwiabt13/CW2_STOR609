@@ -21,13 +21,13 @@ R={('Healthy','Relax'):7,('Healthy','Party'):10,('Sick','Relax'):0,('Sick','Part
 
 from value_iteration import value_iteration
 
-results = value_iteration(S, A, P, R, 0.99, 100000)
+results = value_iteration(S, A, P, R, 0.99, 1000)
 print(results) #ALWAYS RELAX
 
-results = value_iteration(S, A, P, R, 0.5, 100000)
+results = value_iteration(S, A, P, R, 0.5, 1000)
 print(results) #PARTY IF HEALTHY
 
-results = value_iteration(S, A, P, R, 0.1, 100000)
+results = value_iteration(S, A, P, R, 0.1, 1000)
 print(results) #ALWAYS PARTY
 
 """
