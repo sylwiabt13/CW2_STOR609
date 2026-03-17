@@ -7,26 +7,26 @@ Created on Tue Mar 17 11:58:56 2026
 """
 
 
-def value_iteration(state_space: list[int], action_space: list[int], 
-                    transition_func: dict[tuple[int,int],list[float]], 
-                    reward_func: dict[tuple[int,int],float], 
+def value_iteration(state_space: list[str], action_space: list[str], 
+                    transition_func: dict[tuple[str,str],list[float]], 
+                    reward_func: dict[tuple[str,str],float], 
                     gamma: float,
                     termination: int,
-                    epsilon: float = 1e-3,
+                    epsilon: float = 1e-6,
                     init_value_func: dict = None 
-                    )->tuple[dict[int,int], dict[int,float]]:
+                    )->tuple[dict[str,str], dict[str,float]]:
     """
     Parameters
     ----------
-    state_space : list[int]
-        STATE SPACE, a list of integers, each corresponding to a unique state.
-    action_space : list[int]
-        ACTION SPACE, a list of integers, each corresponding to a unique action
-    transition_func : dict[tuple[int,int],list[float]]
+    state_space : list[str]
+        STATE SPACE, a list of strings, each corresponding to a unique state.
+    action_space : list[str]
+        ACTION SPACE, a list of strings, each corresponding to a unique action
+    transition_func : dict[tuple[str,str],list[float]]
         Dictionary of tuples as keys, corresponding to state action pairs,
         with the values being a list of probabilities over the state space. 
         That is given s,a what is the probability we move to s' .
-    reward_func : dict[tuple[int,int],float]
+    reward_func : dict[tuple[str,str],float]
         Dictionary of state action pairs as input, with corresponding output as the reward.
     gamma : float
         Discount factor between 0 and 1
@@ -39,9 +39,9 @@ def value_iteration(state_space: list[int], action_space: list[int],
 
     Returns
     -------
-    (policy,value_func) = (tuple[dict[int,int], dict[int,float]])
+    (policy,value_func) = (tuple[dict[str,str], dict[str,float]])
     
-        #policy: outputted policy should be a dictionary with keys as states corresponding to actions, both of which are integer
+        #policy: outputted policy should be a dictionary with keys as states corresponding to actions, both of which are strings
 
         #value_func: outputted value function with keys corresponding to state space and values corresponding to expected reward of out policy
 
@@ -56,7 +56,7 @@ def value_iteration(state_space: list[int], action_space: list[int],
     new_value_func = value_func.copy()
     
 
-    def Q_func(s: int,a: int)->float:
+    def Q_func(s: str,a: str)->float:
         """
         Calculate the Q-function for state-action pair (s, a)
         """

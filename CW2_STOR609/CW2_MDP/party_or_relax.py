@@ -14,10 +14,10 @@ Such a problem can be modeled as an MDP with two states, healthy and sick, and t
 This problem can be characterised as follows
 """
 
-S = [0,1] #Healthy or Sick
-A = [0,1] #Relax or Party
-P={(0,0):[0.95,0.05],(0,1):[0.7,0.3],(1,0):[0.5,0.5],(1,1):[0.1,0.9]} #State transition probabilities
-R={(0,0):7,(0,1):10,(1,0):0,(1,1):2} #Reward probabilities
+S = ['Healthy','Sick'] #Healthy or Sick
+A = ['Relax','Party'] #Relax or Party
+P={('Healthy','Relax'):[0.95,0.05],('Healthy','Party'):[0.7,0.3],('Sick','Relax'):[0.5,0.5],('Sick','Party'):[0.1,0.9]} #State transition probabilities
+R={('Healthy','Relax'):7,('Healthy','Party'):10,('Sick','Relax'):0,('Sick','Party'):2} #Reward probabilities
 
 from value_iteration import value_iteration
 
