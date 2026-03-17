@@ -12,7 +12,8 @@ def value_iteration(state_space: list[int], action_space: list[int],
                     reward_func: dict[tuple[int,int],float], 
                     gamma: float,
                     termination: int,
-                    epsilon: float = 1e-6
+                    epsilon: float = 1e-3,
+                    init_value_func: dict = None 
                     )->tuple[dict[int,int], dict[int,float]]:
     """
     Parameters
@@ -33,6 +34,8 @@ def value_iteration(state_space: list[int], action_space: list[int],
         Maximal number of iterations we want to perform
     epsilon : float, optional
         For convergence checking. The default is 1e-6.
+    init_value_func: dict, optional
+        Optional initial value function values, the default choice is 0 for all states.
 
     Returns
     -------
@@ -45,8 +48,11 @@ def value_iteration(state_space: list[int], action_space: list[int],
     """
     
     
-    #Empty initial policy
-    value_func = {s: 0 for s in state_space}  # Initialise with 0 or a reasonable value
+    #Value function initialisation
+    if init_value_func == None:
+        value_func = {s: 0 for s in state_space} #If not provided with value function initialisation, try 
+    else:
+        value_func = init_value_func.copy()
     new_value_func = value_func.copy()
     
 
