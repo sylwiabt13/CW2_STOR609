@@ -59,6 +59,7 @@ def value_iteration(state_space: list[str], action_space: list[str],
         """
         Calculate the Q-function for state-action pair (s, a)
         """
+        #Use of .get allows to return a value of 0 if the state action pair does not exist
         return reward_func.get((s, a), 0) + gamma*sum(p * value_func[s_prime] for p, s_prime in zip(transition_func[(s, a)], state_space))
     
     #Update value function to next iteration of value function

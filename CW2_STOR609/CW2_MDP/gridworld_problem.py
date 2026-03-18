@@ -8,26 +8,38 @@ Created on Tue Mar 17 21:02:22 2026
 
 S = ['TL', 'TR', 'BL', 'BR']  # STATE SPACE
 A = ['R', 'L', 'D', 'U']     # ACTION SPACE
+
+
 P = { #TRANSITION PROBABILITIES
-    ('TL', 'R'): [0.9, 0.1, 0.0, 0.0],
-    ('TL', 'D'): [0.1, 0.0, 0.9, 0.0],
-    ('TR', 'L'): [0.9, 0.0, 0.1, 0.0],
-    ('TR', 'D'): [0.2, 0.0, 0.0, 0.8],
-    ('BL', 'R'): [0.1, 0.0, 0.9, 0.0],
-    ('BL', 'U'): [0.8, 0.0, 0.2, 0.0],
+    ('TL', 'R'): [0, 0.9, 0.1, 0],
+    ('TL', 'D'): [0, 0.1, 0.9, 0],
+    ('TR', 'L'): [0.9, 0, 0, 0.1],
+    ('TR', 'D'): [0.2, 0, 0, 0.8],
+    ('BL', 'R'): [0.1, 0, 0, 0.9],
+    ('BL', 'U'): [0.8, 0, 0, 0.2]
 } #State BR is terminal, so there is no associated probability vector
-R = { #REWARD FUNCTION
-    ('TL', 'R'): -1,
-    ('TL', 'D'): -2,
-    ('TR', 'L'): -1.5,
-    ('TR', 'D'): 15,
-    ('BL', 'R'): 20,
-    ('BL', 'U'): -0.5,
-} #State BR is terminal so there are no associated Rewards
+
+RC = { #CONDITIONAL REWARDS: conditional reward is 0 when there is no given reward, the probability 
+      ('TL', 'R'): [0,-1,-2,0],
+      ('TL', 'D'): [0, -1, -2, 0],
+      ('TR', 'L'): [-1.5, 0, 0, 10],
+      ('TR', 'D'): [-1, 0, 0, 15],
+      ('BL', 'R'): [-2.5, 0, 0, 20],
+      ('BL', 'U'): [-0.5, 0, 0, 5]
+}
+
+R = {}
+
+# Calculate dot products for each state-action pair
+for state_action in P.keys():
+    prob_vector = P[state_action]
+    reward_vector = RC[state_action]  # Default to [0,0,0,0] if no reward
+    dot_product = sum(p*r for p,r in zip(prob_vector,reward_vector)) 
+    R[state_action] = dot_product
+    
 
 from value_iteration import value_iteration
 
 results = value_iteration(S, A, P, R, 0.9, 1000)
 print(results) 
 
-#ERROR need to investigate
