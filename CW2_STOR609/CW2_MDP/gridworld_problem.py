@@ -6,6 +6,13 @@ Created on Tue Mar 17 21:02:22 2026
 @author: bathetay
 """
 
+"""
+A grid world is an idealization of a robot in an environment. 
+At each time, the robot is at some location and can move to neighboring locations, 
+collecting rewards and punishments. Suppose that the actions are stochastic, 
+so that there is a probability distribution over the resulting states given the action and the state.
+"""
+
 S = ['TL', 'TR', 'BL', 'BR']  # STATE SPACE
 A = ['R', 'L', 'D', 'U']     # ACTION SPACE
 
