@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Value Iteration for MDPs implementation"
+name = "VIpackage"
 version = "1"
 maintainers = [
   { name="Sylwia Bathe-Taylor", email="s.bathe-taylor@lancaster.ac.uk"},
