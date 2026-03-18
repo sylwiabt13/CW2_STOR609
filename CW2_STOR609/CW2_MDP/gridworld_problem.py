@@ -45,7 +45,7 @@ for state_action in P.keys():
     R[state_action] = dot_product
     
 
-from value_iteration import value_iteration
+from VIpackage import value_iteration
 
 results = value_iteration(S, A, P, R, 0.9, 1000)
 print(results) 

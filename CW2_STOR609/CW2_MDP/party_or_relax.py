@@ -19,7 +19,7 @@ A = ['Relax','Party'] #Relax or Party
 P={('Healthy','Relax'):[0.95,0.05],('Healthy','Party'):[0.7,0.3],('Sick','Relax'):[0.5,0.5],('Sick','Party'):[0.1,0.9]} #State transition probabilities
 R={('Healthy','Relax'):7,('Healthy','Party'):10,('Sick','Relax'):0,('Sick','Party'):2} #Reward probabilities
 
-from value_iteration import value_iteration
+from VIpackage import value_iteration
 
 results = value_iteration(S, A, P, R, 0.99, 1000)
 print(results) #ALWAYS RELAX
