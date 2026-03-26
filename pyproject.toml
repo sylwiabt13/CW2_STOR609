@@ -20,6 +20,3 @@ classifiers = [
 ]
 dependencies = ["pytest"
 ]
-
-[project.urls]
-homepage = "https://github.com/sylwiabt13/CW2_STOR609"
