@@ -22,4 +22,4 @@ dependencies = ["pytest"]
 
 [tool.setuptools.packages]
 # This tells setuptools where to find your packages
-find = ["VIpackage", "example_files", "test_VIpackage"]
+find = ["VIpackage"]
