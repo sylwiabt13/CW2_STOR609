@@ -48,6 +48,63 @@ Value iteration allows us to start with an initial value function value, and ite
 
 ## Pseudocode for Value Iteration Algorithm
 
+```
+DEFINE VALUE_ITERATION FUNCTION
+	"""
+	    Parameters/Inputs
+	    ----------
+	    state_space : list[str]
+		STATE SPACE, a list of strings, each corresponding to a unique state.
+	    action_space : list[str]
+		ACTION SPACE, a list of strings, each corresponding to a unique action
+	    transition_func : dict[tuple[str,str],list[float]]
+		Dictionary of tuples as keys, corresponding to state action pairs,
+		with the values being a list of probabilities over the state space. 
+		That is given s,a what is the probability we move to s' .
+	    reward_func : dict[tuple[str,str],float]
+		Dictionary of state action pairs as input, with corresponding output as the reward.
+	    gamma : float
+		Discount factor between 0 and 1
+	    termination : int
+		Maximal number of iterations we want to perform
+	    epsilon : float, optional
+		For convergence checking. The default is 1e-6.
+	    init_value_func: dict, optional
+		Optional initial value function values, the default choice is 0 for all states.
+
+	    Returns
+	    -------
+	    (policy,value_func) = (tuple[dict[str,str], dict[str,float]])
+	    
+		#policy: outputted policy should be a dictionary with keys as states corresponding to actions, both of which are strings
+
+		#value_func: outputted value function with keys corresponding to state space and values corresponding to expected reward of out policy
+	    """
+
+	IF init_value_func IS UNDEFINED
+		SET IT TO A DEFAULT VALUE OF 0 FOR ALL STATES
+		
+	DEFINE Q_FUNCTION
+		CALCULATE Q-FUNCTION GIVEN REWARD FUNCTION, VALUE FUNCTION, TRANSITION PROBABILITIES
+	k = 0
+	WHILE TRUE:
+		FOR EVERY STATE s:
+			CALCULATE Q-Values FOR ALL VALID ACTIONS
+			CALCULATE NEW VALUE FUNCTION DICTIONARY
+			
+		IF CONVERGENCE OF VALUE FUNCTION BREAK
+		
+		DISCARD OLD VALUE FUNCTION DICTIONARY
+		
+		IF k >= termination BREAK 
+	
+	CALCULATE OPTIMAL POLICY
+	
+	RETURN OPTIMAL POLICY AND VALUE FUNCTION
+		
+```
+
+
 ## References
 
 Poole, D.L. and Mackworth, A.K. (2023) Artificial Intelligence: Foundations of Computational Agents. 3rd edn. Cambridge: Cambridge University Press. 
