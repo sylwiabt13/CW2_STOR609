@@ -19,7 +19,3 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = ["pytest"]
-
-[tool.setuptools.packages]
-# This tells setuptools where to find your packages
-find = ["VIpackage"]
