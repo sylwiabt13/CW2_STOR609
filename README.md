@@ -21,7 +21,15 @@ In general, a Markov Decision Process will have the following characteristics:
 * A state space $\mathcal{S}$.
 * An action space $\mathcal{A}$.
 * A function $P: \mathcal{S} \times \mathcal{A} \longrightarrow \mathcal{S}$ characterising the transition probabilities given a state-action pair.
-* A function $R: \mathcal{S} \times \mathcal{A} \longrightarrow \mathcal{S}$.
+* A function $\mathcal{R}: \mathcal{S} \times \mathcal{A} \times \mathcal{S} \longrightarrow \mathbb{R}$ characterising the reward for entering a state given the previous state-action pair.
+
+For the Value Iteration algorithm you only strictly need the expected reward given a state action pair $R: \mathcal{S} \times \mathcal{A} \longrightarrow \mathbb{R}$ but this can be determined easily by observing:
+
+$$
+R(s,a)= \sum_{s'} \mathcal{R}(s,a,s')P(s'\mid s,a)
+$$
+
+
 
 ## Pseudocode for Value Iteration Algorithm
 
