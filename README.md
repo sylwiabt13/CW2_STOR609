@@ -119,12 +119,14 @@ DEFINE VALUE_ITERATION FUNCTION
 	ENDWHILE
 	
 	CALCULATE OPTIMAL POLICY
+
+    PRINT k
 	
 	RETURN OPTIMAL POLICY AND VALUE FUNCTION
 		
 ```
 
-The pseudocode here is a more verbose version of the Pseudocode provided in Figure 9.16 
+The pseudocode here is a more verbose version of the Pseudocode provided in Figure 9.16, the mathematical details are described in our explanation above.
 
 
 ## References
