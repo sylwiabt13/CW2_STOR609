@@ -16,10 +16,12 @@ One can verify the package is functioning correctly with `pytest`.
 
 In general a Markov Decision Process will have the following characteristics:
 
-* A state space $\mathcal S$.
-* An action space $\mathcal A$.
-* A function $P: \mathcal S \times \mathcal A \longrightarrow \mathcal S $ characterising the transition probabilities given a state-action pair.
-* A function $R: $ S \times \mathcal A \longrightarrow \mathcal S $
+In general, a Markov Decision Process will have the following characteristics:
+
+* A state space $\mathcal{S}$.
+* An action space $\mathcal{A}$.
+* A function $P: \mathcal{S} \times \mathcal{A} \longrightarrow \mathcal{S}$ characterising the transition probabilities given a state-action pair.
+* A function $R: \mathcal{S} \times \mathcal{A} \longrightarrow \mathcal{S}$.
 
 ## Pseudocode for Value Iteration Algorithm
 
