@@ -29,13 +29,22 @@ $$
 R(s,a)= \sum_{\tilde{s}} \mathcal{R}(s,a,\tilde{s})P(\tilde{s} \mid s,a)
 $$
 
-The value iteration algorithm, seeks to identify a policy $\pi: \mathcal{S} \longrightarrow \mathcal{A}$, that will maximise some notion of a discounted future cumulative reward.
+The value iteration algorithm, seeks to identify a policy $\pi: \mathcal{S} \longrightarrow \mathcal{A}$, that will maximise some notion of a discounted future cumulative reward. We characterise this using the following two functions:
 
-We let $V^{\pi}_k (s)$ denote the discounted future cumulative reward we get under policy $\pi$ initialised in a state $s \in \mathcal{S}$, then we have that:
+* The Value function $V^{\pi}: \mathcal{S} \longrightarrow \mathbb{R}$, characterises the expected discounted future cumulative reward given a policy $\pi$, and given we are in a state $s\in\mathcal{S}$.
+* The $Q$ function $Q^{\pi}: \mathcal{S} \times \mathcal{A} \longrightarrow \mathbb{R}$, characterises this expected reward given a policy $\pi$, and given the state-action pair $(s,a)\in\mathcal{S}\times\mathcal{A}$.
+
+These are defined recursively in terms of one another:
 
 $$
-V^{\pi}_k (s) = \sum\_{t=k}^\infty \gamma^{t-k}r\_k
+Q^{\pi}(s,a) = R(s,a) + \gamma \sum\_{\tilde{s}}  P(\tilde{s}\mid s,a) V^{\pi}(\tilde{s})
 $$
+
+$$
+V^{\pi}(s) = Q^{\pi}(s,\pi(s))
+$$
+
+Value iteration allows us to start with an initial value function value, and iterate through these equations until they converge. The optimal policy can then be calculated by identifying for a given state, which action maximises the final iteration of the $Q$ function.
 
 ## Pseudocode for Value Iteration Algorithm
 
