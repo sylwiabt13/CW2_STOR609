@@ -20,5 +20,5 @@ classifiers = [
 ]
 dependencies = ["pytest"]
 
-[tool.setuptools.packages]
+[tool.setuptools]
 packages = ["VIpackage"]
