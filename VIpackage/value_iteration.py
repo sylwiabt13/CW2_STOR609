@@ -95,4 +95,6 @@ def value_iteration(state_space: list[str], action_space: list[str],
                      ) for s in state_space}
     #Find the policy, only considering the valid actions, if there are no valid actions there is no policy so return None
     
+    print(f"Number of Iterations = {k}") #PRINT NUMBER OF ITERATIONS
+    
     return policy, value_func

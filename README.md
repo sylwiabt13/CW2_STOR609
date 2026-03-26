@@ -124,6 +124,8 @@ DEFINE VALUE_ITERATION FUNCTION
 		
 ```
 
+The pseudocode here is a more verbose version of the Pseudocode provided in Figure 9.16 
+
 
 ## References
 
