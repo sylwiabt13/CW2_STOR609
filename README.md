@@ -26,10 +26,16 @@ In general, a Markov Decision Process will have the following characteristics:
 For the Value Iteration algorithm you only strictly need the expected reward given a state action pair $R: \mathcal{S} \times \mathcal{A} \longrightarrow \mathbb{R}$ but this can be determined easily by observing:
 
 $$
-R(s,a)= \sum_{s'} \mathcal{R}(s,a,s')P(s'\mid s,a)
+R(s,a)= \sum_{\tilde{s}} \mathcal{R}(s,a,\tilde{s})P(\tilde{s} \mid s,a)
 $$
 
+The value iteration algorithm, seeks to identify a policy $\pi: \mathcal{S} \longrightarrow \mathcal{A}$, that will maximise some notion of a discounted future cumulative reward.
 
+We let $V^{\pi}_k (s)$ denote the discounted future cumulative reward we get under policy $\pi$ initialised in a state $s \in \mathcal{S}$, then we have that:
+
+$$
+V^{\pi}_k (s) = \sum\_{t=k}^\infty \gamma^{t-k}r\_k
+$$
 
 ## Pseudocode for Value Iteration Algorithm
 
