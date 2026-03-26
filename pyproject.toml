@@ -19,3 +19,6 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = ["pytest"]
+
+[tool.setuptools.packages]
+packages = ["VIpackage"]
