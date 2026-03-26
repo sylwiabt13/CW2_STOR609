@@ -55,20 +55,27 @@ DEFINE VALUE_ITERATION FUNCTION
 	    ----------
 	    state_space : list[str]
 		STATE SPACE, a list of strings, each corresponding to a unique state.
+		
 	    action_space : list[str]
 		ACTION SPACE, a list of strings, each corresponding to a unique action
+		
 	    transition_func : dict[tuple[str,str],list[float]]
 		Dictionary of tuples as keys, corresponding to state action pairs,
 		with the values being a list of probabilities over the state space. 
 		That is given s,a what is the probability we move to s' .
+		
 	    reward_func : dict[tuple[str,str],float]
 		Dictionary of state action pairs as input, with corresponding output as the reward.
+		
 	    gamma : float
 		Discount factor between 0 and 1
+		
 	    termination : int
 		Maximal number of iterations we want to perform
+		
 	    epsilon : float, optional
 		For convergence checking. The default is 1e-6.
+		
 	    init_value_func: dict, optional
 		Optional initial value function values, the default choice is 0 for all states.
 
@@ -82,21 +89,34 @@ DEFINE VALUE_ITERATION FUNCTION
 	    """
 
 	IF init_value_func IS UNDEFINED
+	
 		SET IT TO A DEFAULT VALUE OF 0 FOR ALL STATES
 		
-	DEFINE Q_FUNCTION
+	DEFINE Q_func
+	
 		CALCULATE Q-FUNCTION GIVEN REWARD FUNCTION, VALUE FUNCTION, TRANSITION PROBABILITIES
-	k = 0
-	WHILE TRUE:
-		FOR EVERY STATE s:
-			CALCULATE Q-Values FOR ALL VALID ACTIONS
-			CALCULATE NEW VALUE FUNCTION DICTIONARY
-			
-		IF CONVERGENCE OF VALUE FUNCTION BREAK
 		
-		DISCARD OLD VALUE FUNCTION DICTIONARY
+	k = 0
+	
+	WHILE TRUE:
+	
+		FOR EVERY STATE s:
+		
+			CALCULATE Q_Values USING Q_func FOR ALL VALID ACTIONS
+			
+			NEW VALUE FUNCTION DICTIONARY AT STATE S = max(Q_Values)
+			
+		ENDFOR
+			
+		IF NEW VALUE FUNCTION WITHIN epsilon OF OLD VALUE FUNCTION BREAK
+		
+		DISCARD OLD VALUE FUNCTION DICTIONARY AND STORE NEW VALUE FUNCTION
+		
+		k += 1
 		
 		IF k >= termination BREAK 
+	
+	ENDWHILE
 	
 	CALCULATE OPTIMAL POLICY
 	
