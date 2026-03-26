@@ -37,5 +37,5 @@ RESULTS will demonstrate that the chosen policy varies with the choice of gamma 
 #Unit test proposal as its a simple calculation
 
 results = value_iteration(S, A, P, R, 1, 2)
-print(results) #ALWAYS PARTY
+print(results)
 
